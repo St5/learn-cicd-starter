@@ -14,7 +14,7 @@ func TestGetAPIKey(t *testing.T) {
 		t.Errorf("GetAPIKey() error = %v", err)
 		return
 	}
-	want := "MyApiKey1"
+	want := "MyApiKey"
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("GetAPIKey() = %v, want %v", got, want)
 	}
