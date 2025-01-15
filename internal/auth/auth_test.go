@@ -19,3 +19,24 @@ func TestGetAPIKey(t *testing.T) {
 		t.Errorf("GetAPIKey() = %v, want %v", got, want)
 	}
 }
+
+func TestGetAPIKeyNoAuthHeader(t *testing.T) {
+	_, err := GetAPIKey(http.Header{
+	})
+	if err == nil {
+		t.Errorf("Expected error = %v", err)
+		return
+	}
+}
+
+func TestGetAPIKeyNoApiPrefix(t *testing.T) {
+	_, err := GetAPIKey(http.Header{
+		"Authorization": []string{"MyApiKey"},
+	})
+	if err == nil {
+		t.Errorf("Expected error = %v", err)
+		return
+	}
+}
+
+
