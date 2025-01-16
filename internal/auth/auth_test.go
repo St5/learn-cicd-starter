@@ -21,8 +21,7 @@ func TestGetAPIKey(t *testing.T) {
 }
 
 func TestGetAPIKeyNoAuthHeader(t *testing.T) {
-	_, err := GetAPIKey(http.Header{
-	})
+	_, err := GetAPIKey(http.Header{})
 	if err == nil {
 		t.Errorf("Expected error = %v", err)
 		return
@@ -38,5 +37,3 @@ func TestGetAPIKeyNoApiPrefix(t *testing.T) {
 		return
 	}
 }
-
-
