@@ -21,11 +21,6 @@ jobs:
         with:
           go-version: "1.23.0"
 
-      - name: Install goose
-        run: |
-          go install github.com/pressly/goose/cmd/goose@latest
-          export PATH=$PATH:$(go env GOPATH)/bin
-
       - name: Build
         run: sh scripts/buildprod.sh
 
@@ -37,12 +32,12 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Use gcloud CLI
-        run: gcloud info
-
       - name: Build and push image
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-448021/notely-ar-repo/notely:latest .
 
+      - name: Install goose
+        run: go install github.com/pressly/goose/v3/cmd/goose@latest
+        
       - name: migrate
         run: ./scripts/migrateup.sh
       
