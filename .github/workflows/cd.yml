@@ -22,7 +22,9 @@ jobs:
           go-version: "1.23.0"
 
       - name: Install goose
-        run: go get -u github.com/pressly/goose/cmd/goose
+        run: |
+          go install github.com/pressly/goose/cmd/goose@latest
+          export PATH=$PATH:$(go env GOPATH)/bin
 
       - name: Build
         run: sh scripts/buildprod.sh
